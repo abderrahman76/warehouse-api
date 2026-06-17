@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: warehouse-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: warehouse
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: warehouse
+      MYSQL_PASSWORD: warehouse
+    ports:
+      - "3306:3306"
+    volumes:
+      - warehouse_mysql_data:/var/lib/mysql
+volumes:
+  warehouse_mysql_data:
