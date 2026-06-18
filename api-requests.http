@@ -1,0 +1,28 @@
+### Create a product
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "sku": "SKU-001",
+  "name": "Cordless Drill",
+  "description": "18V cordless drill with two batteries"
+}
+
+### Get all products
+GET http://localhost:8080/api/products
+
+### Get one product
+GET http://localhost:8080/api/products/1
+
+### Update a product
+PUT http://localhost:8080/api/products/1
+Content-Type: application/json
+
+{
+  "sku": "SKU-001",
+  "name": "Cordless Drill (updated)",
+  "description": "Now with a carrying case"
+}
+
+### Delete a product
+DELETE http://localhost:8080/api/products/1
