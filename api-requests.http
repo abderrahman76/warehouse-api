@@ -32,9 +32,9 @@ POST http://localhost:8080/api/warehouses
 Content-Type: application/json
 
 {
-  "code": "WH-BER-01",
-  "name": "Berlin Central Warehouse",
-  "city": "Berlin"
+  "code": "WH-PAD-01",
+  "name": "Paderborn Central Warehouse",
+  "city": "Paderborn"
 }
 
 ### Get all warehouses
@@ -42,3 +42,33 @@ GET http://localhost:8080/api/warehouses
 
 ### Get one warehouse
 GET http://localhost:8080/api/warehouses/1
+
+### (If needed) create a product first
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{ "sku": "SKU-100", "name": "Safety Helmet", "description": "Hard hat, yellow" }
+
+### Register stock — product in warehouse 1
+POST http://localhost:8080/api/stock
+Content-Type: application/json
+
+{ "productId": 2, "warehouseId": 1, "quantity": 50 }
+
+### Register the same product in warehouse 2
+POST http://localhost:8080/api/stock
+Content-Type: application/json
+
+{ "productId": 3, "warehouseId": 2, "quantity": 20 }
+
+### View all stock
+GET http://localhost:8080/api/stock
+
+### View stock in warehouse 1 only
+GET http://localhost:8080/api/stock?warehouseId=1
+
+### Try a duplicate — should return 409
+POST http://localhost:8080/api/stock
+Content-Type: application/json
+
+{ "productId": 2, "warehouseId": 1, "quantity": 5 }
