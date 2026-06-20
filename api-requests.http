@@ -26,3 +26,19 @@ Content-Type: application/json
 
 ### Delete a product
 DELETE http://localhost:8080/api/products/1
+
+### Create a warehouse
+POST http://localhost:8080/api/warehouses
+Content-Type: application/json
+
+{
+  "code": "WH-BER-01",
+  "name": "Berlin Central Warehouse",
+  "city": "Berlin"
+}
+
+### Get all warehouses
+GET http://localhost:8080/api/warehouses
+
+### Get one warehouse
+GET http://localhost:8080/api/warehouses/1
