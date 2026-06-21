@@ -72,3 +72,27 @@ POST http://localhost:8080/api/stock
 Content-Type: application/json
 
 { "productId": 2, "warehouseId": 1, "quantity": 5 }
+
+### Receive 30 units into warehouse 1 (INBOUND)
+POST http://localhost:8080/api/movements
+Content-Type: application/json
+
+{ "productId": 2, "warehouseId": 1, "type": "INBOUND", "quantity": 30 }
+
+### Check the stock level went UP
+GET http://localhost:8080/api/stock?warehouseId=1
+
+### Pick 10 units out (OUTBOUND)
+POST http://localhost:8080/api/movements
+Content-Type: application/json
+
+{ "productId": 2, "warehouseId": 1, "type": "OUTBOUND", "quantity": 10 }
+
+### Check the stock level went DOWN
+GET http://localhost:8080/api/stock?warehouseId=1
+
+### Try to over-pick — should return 409 with a clear message
+POST http://localhost:8080/api/movements
+Content-Type: application/json
+
+{ "productId": 2, "warehouseId": 1, "type": "OUTBOUND", "quantity": 99999 }

@@ -70,4 +70,5 @@ public class StockService {
 
         return StockMapper.toResponse(stockRepository.save(stock));
     }
+
 }
