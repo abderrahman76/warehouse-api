@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class StockMovementService {
 
@@ -81,5 +83,15 @@ public class StockMovementService {
         StockMovement saved = movementRepository.save(movement);
 
         return MovementMapper.toResponse(saved);
+    }
+
+    public List<MovementResponse> findHistory(Long productId) {
+        List<StockMovement> movements = (productId == null)
+                ? movementRepository.findAllByOrderByCreatedAtDesc()
+                : movementRepository.findByProductIdOrderByCreatedAtDesc(productId);
+
+        return movements.stream()
+                .map(MovementMapper::toResponse)
+                .toList();
     }
 }

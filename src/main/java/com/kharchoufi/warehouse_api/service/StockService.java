@@ -71,4 +71,11 @@ public class StockService {
         return StockMapper.toResponse(stockRepository.save(stock));
     }
 
+    public List<StockResponse> findLowStock(int threshold) {
+        return stockRepository.findByQuantityLessThan(threshold)
+                .stream()
+                .map(StockMapper::toResponse)
+                .toList();
+    }
+
 }

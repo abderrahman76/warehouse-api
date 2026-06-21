@@ -96,3 +96,15 @@ POST http://localhost:8080/api/movements
 Content-Type: application/json
 
 { "productId": 2, "warehouseId": 1, "type": "OUTBOUND", "quantity": 99999 }
+
+### Full movement history (newest first)
+GET http://localhost:8080/api/movements
+
+### History for one product
+GET http://localhost:8080/api/movements?productId=2
+
+### Low-stock with default threshold (10)
+GET http://localhost:8080/api/stock/low-stock
+
+### Low-stock with a custom threshold
+GET http://localhost:8080/api/stock/low-stock?threshold=25

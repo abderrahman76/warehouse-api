@@ -16,4 +16,5 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
 
     boolean existsByProductIdAndWarehouseId(Long productId, Long warehouseId);
 
+    List<Stock> findByQuantityLessThan(int threshold);
 }

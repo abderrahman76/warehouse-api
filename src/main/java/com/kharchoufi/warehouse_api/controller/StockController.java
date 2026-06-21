@@ -30,4 +30,9 @@ public class StockController {
     public StockResponse register(@RequestBody StockRequest request) {
         return stockService.register(request);
     }
+
+    @GetMapping("/low-stock")
+    public List<StockResponse> getLowStock(@RequestParam(defaultValue = "10") int threshold) {
+        return stockService.findLowStock(threshold);
+    }
 }
