@@ -50,7 +50,7 @@ public class StockMovementService {
                         HttpStatus.NOT_FOUND, "Warehouse not found with id " + request.warehouseId()));
 
         Stock stock = stockRepository
-                .findByProductIdAndWarehouseId(request.productId(), request.warehouseId())
+                .findByProductIdAndWarehouseIdForUpdate(request.productId(), request.warehouseId())
                 .orElse(null);
 
         if (request.type() == MovementType.INBOUND) {
