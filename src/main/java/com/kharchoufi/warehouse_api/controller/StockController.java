@@ -3,6 +3,7 @@ package com.kharchoufi.warehouse_api.controller;
 import com.kharchoufi.warehouse_api.dto.StockRequest;
 import com.kharchoufi.warehouse_api.dto.StockResponse;
 import com.kharchoufi.warehouse_api.service.StockService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class StockController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public StockResponse register(@RequestBody StockRequest request) {
+    public StockResponse register(@Valid @RequestBody StockRequest request) {
         return stockService.register(request);
     }
 

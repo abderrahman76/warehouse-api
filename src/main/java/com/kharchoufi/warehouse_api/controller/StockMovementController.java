@@ -3,6 +3,7 @@ package com.kharchoufi.warehouse_api.controller;
 import com.kharchoufi.warehouse_api.dto.MovementRequest;
 import com.kharchoufi.warehouse_api.dto.MovementResponse;
 import com.kharchoufi.warehouse_api.service.StockMovementService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class StockMovementController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MovementResponse record(@RequestBody MovementRequest request) {
+    public MovementResponse record(@Valid @RequestBody MovementRequest request) {
         return movementService.record(request);
     }
 

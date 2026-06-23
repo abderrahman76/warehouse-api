@@ -3,6 +3,7 @@ package com.kharchoufi.warehouse_api.controller;
 import com.kharchoufi.warehouse_api.dto.WarehouseRequest;
 import com.kharchoufi.warehouse_api.dto.WarehouseResponse;
 import com.kharchoufi.warehouse_api.service.WarehouseService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +31,12 @@ public class WarehouseController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public WarehouseResponse create(@RequestBody WarehouseRequest request) {
+    public WarehouseResponse create(@Valid @RequestBody WarehouseRequest request) {
         return warehouseService.create(request);
     }
 
     @PutMapping("/{id}")
-    public WarehouseResponse update(@PathVariable Long id, @RequestBody WarehouseRequest request) {
+    public WarehouseResponse update(@PathVariable Long id,@Valid  @RequestBody WarehouseRequest request) {
         return warehouseService.update(id, request);
     }
 

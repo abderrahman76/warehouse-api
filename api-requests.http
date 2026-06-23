@@ -108,3 +108,15 @@ GET http://localhost:8080/api/stock/low-stock
 
 ### Low-stock with a custom threshold
 GET http://localhost:8080/api/stock/low-stock?threshold=25
+
+### Bad movement — quantity must be positive
+POST http://localhost:8080/api/movements
+Content-Type: application/json
+
+{ "productId": 2, "warehouseId": 1, "type": "OUTBOUND", "quantity": -5 }
+
+### Bad product — should return a clean 400
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{ "sku": "", "name": "" }
