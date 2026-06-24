@@ -135,3 +135,15 @@ POST http://localhost:8080/api/movements
 Content-Type: application/json
 
 { "productId": 2, "warehouseId": 1, "type": "SIDEWAYS", "quantity": 5 }
+
+### Register a manager
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{ "username": "abdou", "password": "secret123", "role": "MANAGER" }
+
+### Register a worker
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{ "username": "worker1", "password": "secret123", "role": "WORKER" }
