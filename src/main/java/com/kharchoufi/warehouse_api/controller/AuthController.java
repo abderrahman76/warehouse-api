@@ -1,5 +1,7 @@
 package com.kharchoufi.warehouse_api.controller;
 
+import com.kharchoufi.warehouse_api.dto.AuthResponse;
+import com.kharchoufi.warehouse_api.dto.LoginRequest;
 import com.kharchoufi.warehouse_api.dto.RegisterRequest;
 import com.kharchoufi.warehouse_api.dto.UserResponse;
 import com.kharchoufi.warehouse_api.service.AuthService;
@@ -21,5 +23,10 @@ public class AuthController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse register(@Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
+    }
+
+    @PostMapping("/login")
+    public AuthResponse login(@Valid @RequestBody LoginRequest request) {
+        return authService.login(request);
     }
 }

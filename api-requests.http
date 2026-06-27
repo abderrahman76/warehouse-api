@@ -147,3 +147,30 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 { "username": "worker1", "password": "secret123", "role": "WORKER" }
+
+### Should now FAIL with 401 — no token
+GET http://localhost:8080/api/products
+
+### Log in as the manager
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{ "username": "abdou", "password": "secret123" }
+
+> {% client.global.set("token", response.body.token); %}
+
+### Now WORKS — authenticated request with the token
+GET http://localhost:8080/api/products
+Authorization: Bearer {{token}}
+
+### Log in as the worker
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{ "username": "worker1", "password": "secret123" }
+
+> {% client.global.set("workerToken", response.body.token); %}
+
+### Worker tries to DELETE — should be FORBIDDEN (403)
+DELETE http://localhost:8080/api/products/1
+Authorization: Bearer {{workerToken}}
